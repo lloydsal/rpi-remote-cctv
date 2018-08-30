@@ -1,0 +1,22 @@
+{
+  "name": "rpi-remote-cctv",
+  "version": "0.0.2",
+  "description": "An Event Driven Home CCTV Capture from a remote location using Rpi, Pubnub amd AWS Lambda",
+  "main": "subscribe.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lloydsaldanha/rpi-remote-cctv.git"
+  },
+  "author": "Lloyd Saldanha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lloydsaldanha/rpi-remote-cctv/issues"
+  },
+  "homepage": "https://github.com/lloydsaldanha/rpi-remote-cctv#readme",
+  "dependencies": {
+    "pubnub": "^4.21.5"
+  }
+}
