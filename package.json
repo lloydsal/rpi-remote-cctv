@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/lloydsaldanha/rpi-remote-cctv#readme",
   "dependencies": {
+    "dotenv": "^6.0.0",
     "pubnub": "^4.21.5"
   }
 }

@@ -1,10 +1,9 @@
 var PubNub = require('pubnub')
-
-var channel = "cctv";
+require('dotenv').config();
 
 pubnub = new PubNub({
-    publishKey : 'pub-c-4f10f066-06e2-4211-9a1c-7586daf79629',
-    subscribeKey : 'sub-c-cb88f1a4-cfaf-11e4-9de3-02ee2ddab7fe'
+    publishKey : process.env.PUBNUB_PUBLISH_KEY,
+    subscribeKey : process.env.PUBNUB_SUBSCRIBE_KEY
 })
 
 function callback(msg){
@@ -48,7 +47,7 @@ function subscribe() {
     })
     console.log("Subscribing..");
     pubnub.subscribe({
-        channels: [channel]
+        channels: [process.env.PUBNUB_CHANNEL]
     });
 
 };
