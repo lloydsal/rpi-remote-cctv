@@ -28,20 +28,20 @@ cam = Camera()
 cam.record(filePath, captureDuration, False)
 print 'Recording completed'
 
-# # Upload File to S3
-# print 'Uploading file to S3 . . .'
-# file = FileHandler(filePath)
-# file.upload()
-# print 'File uploaded successfully, Generating Url to access video'
-# s3Url = file.getS3PresignedUrl();
-#
-#
-# # Email S3Url to user for viewing
-# print 'Sending Email . . .'
-# email = Email()
-# if(email.send('lloydsaldanha@gmail.com', file.fileBasename, s3Url)):
-#     print "File successfully uploaded, Email sent !"
-#     # file.delete()
-# else:
-#     print "something went wrong"
+# Upload File to S3
+print 'Uploading file to S3 . . .'
+file = FileHandler(filePath)
+file.upload()
+print 'File uploaded successfully, Generating Url to access video'
+s3Url = file.getS3PresignedUrl();
+
+
+# Email S3Url to user for viewing
+print 'Sending Email . . .'
+email = Email()
+if(email.send('lloydsaldanha@gmail.com', file.fileBasename, s3Url)):
+    print "File successfully uploaded, Email sent !"
+    # file.delete()
+else:
+    print "something went wrong"
 
