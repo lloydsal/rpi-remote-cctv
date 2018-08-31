@@ -18,8 +18,7 @@ function callback(msg){
         pyProg.stdout.on('data', function(data) {
 
             console.log(data.toString());
-            res.write(data);
-            res.end('end');
+            console.log('subscriber waiting . . .')
         });
 
         break;
@@ -34,18 +33,19 @@ function subscribe() {
     pubnub.addListener({
         status: function(statusEvent) {
             if (statusEvent.category === "PNConnectedCategory") {
-                console.log("Connected, Waiting for Message");
+                console.log("Connected, Subscriber waiting . . .");
             }
         },
         message: function(msg) {
-            console.log('Message Received, action =' + msg.message.action);
+            console.log('Message Received');
+            console.log(msg.message)
             callback(msg);
         },
         presence: function(presenceEvent) {
             // handle presence
         }
     })
-    console.log("Subscribing..");
+    console.log("Connecting . . .");
     pubnub.subscribe({
         channels: [process.env.PUBNUB_CHANNEL]
     });
