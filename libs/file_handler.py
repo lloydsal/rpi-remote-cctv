@@ -62,6 +62,7 @@ class FileHandler:
             },
             ExpiresIn = self.FILE_EXPIRY
         )
+
         return self.s3Url
 
 
