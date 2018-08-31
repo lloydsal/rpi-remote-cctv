@@ -20,10 +20,10 @@ captureDuration = duration
 # Capture time of Video
 dt = datetime.datetime.today()
 timestamp = dt.strftime("%Y-%m-%d_%H:%M:%S")
-filePath = os.getcwd() + '/output/' + timestamp +'.avi'
+filePath = os.path.join(os.getcwd(), 'output', timestamp + '.avi')
 
 # Capture and Save video on local disc
-print 'Recording for {duration} seconds . . .'.format( duration=captureDuration )
+print 'Recording for {duration} seconds . . .'.format(duration=captureDuration)
 cam = Camera()
 cam.record(filePath, captureDuration, False)
 print 'Recording completed'
@@ -33,7 +33,7 @@ print 'Uploading file to S3 . . .'
 file = FileHandler(filePath)
 file.upload()
 print 'File uploaded successfully, Generating Url to access video'
-s3Url = file.getS3PresignedUrl();
+s3Url = file.getS3PresignedUrl()
 
 
 # Email S3Url to user for viewing
@@ -44,4 +44,3 @@ if(email.send('lloydsaldanha@gmail.com', file.fileBasename, s3Url)):
     # file.delete()
 else:
     print "something went wrong"
-
