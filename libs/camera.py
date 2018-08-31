@@ -1,49 +1,61 @@
 import cv2
 import numpy as np
 import time
+import os
 
-class Camera:
 
-    FPS = 30.0
-    RESOLUTION = (640, 480)
-    DEFAULT_DURATION = 20 # seconds
-    isDisplayFrame = False
+class Camera(object):
 
-    duration = None
+    def __init__(self):
+        self.FPS = 30.0
+        self.RESOLUTION = (640, 480)
+        self.DEFAULT_DURATION = 20  # seconds
 
-    def record(self, outputFilePath, duration, isDisplayFrame = False):
-
-        self.duration = duration
-        self.isDisplayFrame = isDisplayFrame
+    def record(self, output_filepath, duration, is_display_frame=False):
 
         # Instantiate Camera class
-        cap = cv2.VideoCapture(0)
-        # cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 100)
-        # cap.set(cv2.CAP_PROP_EXPOSURE, 1000)
+        capture = cv2.VideoCapture(0)
+        if (capture.isOpened() is False):
+            print("Error opening video stream or file")
 
         # Define the codec and create VideoWriter object
         fourcc = cv2.VideoWriter_fourcc(*'XVID')
-        # fourcc = cv2.VideoWriter_fourcc(*'MJPG')
 
-        out = cv2.VideoWriter(outputFilePath, fourcc, self.FPS, self.RESOLUTION)
+        output = cv2.VideoWriter(output_filepath, fourcc,
+                                 self.FPS, self.RESOLUTION)
 
-        startTime = time.time()
-        while (int(time.time() - startTime) <= self.duration):
-            ret, frame = cap.read()
+        captured_frames = 0
+        total_frames_required = duration*self.FPS
 
-            if ret == True:
-                out.write(frame)
+        while (capture.isOpened()):
+            if captured_frames >= total_frames_required:
+                break
+
+            ret, frame = capture.read()
+
+            if ret is True:
+                output.write(frame)
+                frame_duration = "{0}.{1}".format(int(captured_frames/self.FPS),
+                                                  int(captured_frames % self.FPS))
+                print("CAPTURED {0}/{1} seconds!".format(str(frame_duration),
+                                                        str(duration)))
+                captured_frames += 1
 
                 # show a frame on the screen
-                if(self.isDisplayFrame == True or self.isDisplayFrame == 1):
-                    cv2.imshow('frame', frame)
+                if(is_display_frame):
+                    cv2.imshow('Frame', frame)
 
+                # Press Q to exit
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
             else:
                 break
 
+        if captured_frames:
+            print("CAPTURED {0} FRAMES!".format(str(captured_frames)))
+
         # Release everything if job is finished
-        cap.release()
-        out.release()
+        capture.release()
+        output.release()
         cv2.destroyAllWindows()
+
