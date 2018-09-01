@@ -37,8 +37,9 @@ class Camera(object):
                 output.write(frame)
                 frame_duration = "{0}.{1}".format(int(captured_frames/self.FPS),
                                                   int(captured_frames % self.FPS))
-                print("CAPTURED {0}/{1} seconds!".format(str(frame_duration),
-                                                        str(duration)))
+                # print("CAPTURED {0}/{1} seconds!".format(str(frame_duration),
+                #                                         str(duration)))
+
                 captured_frames += 1
 
                 # show a frame on the screen
