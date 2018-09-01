@@ -35,7 +35,6 @@ file.upload()
 print 'File uploaded successfully, Generating Url to access video'
 s3Url = file.getS3PresignedUrl();
 
-
 # Email S3Url to user for viewing
 print 'Sending Email . . .'
 email = Email()
@@ -44,4 +43,3 @@ if(email.send('lloydsaldanha@gmail.com', file.fileBasename, s3Url)):
     # file.delete()
 else:
     print "something went wrong"
-
