@@ -5,7 +5,7 @@ import requests
 class FileHandler:
     "This is a wrapper class for basic S3 interractions"
 
-    FILE_EXPIRY = 60 * 48 # 48 hours
+    FILE_EXPIRY = 60 * 60 * 48 # 48 hours in seconds
 
     filePath = None
     s3Bucket = 'rpi-remote-cctv'
