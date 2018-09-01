@@ -1,6 +1,6 @@
 import boto3
 import os
-import requests
+#import requests
 
 class FileHandler:
     "This is a wrapper class for basic S3 interractions"
