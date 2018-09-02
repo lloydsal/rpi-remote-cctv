@@ -1,1 +1,5 @@
 pubnub>=4.1.0
+boto3==1.8.5
+opencv-contrib-python==3.4.2.17
+requests>=2.4
+numpy>=1.11.1
