@@ -29,8 +29,8 @@ print 'Recording for {duration} seconds . . .'.format(duration=captureDuration)
 cam = Camera()
 
 if(cam.record(filePath, captureDuration, is_display_frame=False)):
-
-    print 'Recording completed'
+    print "File saved in '{filePath}'".format(filePath = filePath)
+    print 'Recording completed, File saved as '
 
     # Upload File to S3
     print 'Uploading file to S3 . . .'

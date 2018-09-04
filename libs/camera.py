@@ -22,7 +22,6 @@ class Camera(object):
         # Instantiate Camera class
         capture = cv2.VideoCapture(0)
         if (capture.isOpened()):
-            print("Error opening video stream or file")
 
             # Define the codec and create VideoWriter object
             fourcc = cv2.VideoWriter_fourcc(*'XVID')
