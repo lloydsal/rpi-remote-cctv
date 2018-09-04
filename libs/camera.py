@@ -11,7 +11,7 @@ ERASE_LINE = '\x1b[2K'
 class Camera(object):
 
     def __init__(self):
-        self.FPS = 30.0
+        self.FPS = 5.0
         self.RESOLUTION = (640, 480)
         self.DEFAULT_DURATION = 20  # seconds
 
